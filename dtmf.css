@@ -15,41 +15,41 @@
 /* numbers */
 
 .zero {
-  background-color: white;
+  background-color: rgb(25, 0, 0);
 }
 
 .one {
-  background-color: white;
+  background-color: rgb(50, 0, 0);
 }
 
 .two {
-  background-color: white;
+  background-color: rgb(75, 0, 0);
 }
 
 .three {
-  background-color: white;
+  background-color: rgb(100, 0, 0);
 }
 
 .four {
-  background-color: white;
+  background-color: rgb(125, 0, 0);
 }
 
 .five {
-  background-color: white;
+  background-color: rgb(150, 0, 0);
 }
 
 .six {
-  background-color: white;
+  background-color: rgb(175, 0, 0);
 }
 
 .seven {
-  background-color: white;
+  background-color: rgb(200, 0, 0);
 }
 
 .eight {
-  background-color: white;
+  background-color: rgb(225, 0, 0);
 }
 
 .nine {
-  background-color: white;
+  background-color: rgb(255, 0, 0);
 }

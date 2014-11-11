@@ -23,5 +23,7 @@ lines.forEach(function(line) {
   parsed.push(data);
 });
 
+var dataToWrite = 'window.poem = ' + JSON.stringify(parsed);
+
 var outfile = (process.argv.length >= 2)? process.argv[1] : 'poem.js';
-fs.writeFileSync(outfile, JSON.stringify(parsed));
+fs.writeFileSync(outfile, dataToWrite);

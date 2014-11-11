@@ -12,12 +12,13 @@ var parsed = [];
 
 lines.forEach(function(line) {
   var segments = line.split(' ||| ');
-  if (segments.length != 3) return;
+  if (segments.length != 4) return;
   
   var data = {
     line: segments[0],
-    duration: parseFloat(segments[1]),
-    amplitude: parseFloat(segments[2])
+    onset: parseFloat(segments[1]),
+    duration: parseFloat(segments[2]),
+    amplitude: parseFloat(segments[3])
   };
   
   parsed.push(data);

@@ -32,27 +32,27 @@ function handleLineData(lineData) {
   updateCssForLine(line, lineData);
   line.css('display', 'none');
   $('body').append(line);
-  
+  lineData.div = line;
+
   // come inside
   setTimeout(function() {
     line.fadeIn(200);
-    
+
     // flashin
     var timePerCharacter = (lineData.duration * 1000) / lineData.line.length;
     for (var i = 0; i < lineData.line.length; i++) {
-      var char = lineData.line.charAt(i);
-      updateScreenForCharacter(char, timePerCharacter * i);
+      updateScreenForCharacter(lineData, i, timePerCharacter * i);
     }
 
     var aggInterval = setInterval(function() {
       lineData.top += Math.floor((Math.random() - 0.5) * 2 * lineData.aggressiveness);
       lineData.left += Math.floor((Math.random() - 0.5) * 2 * lineData.aggressiveness);
       lineData.fontSize += (Math.random() - 0.5) * FONT_AGG_MULT * lineData.aggressiveness;
-      
+
       sanitizeLineData(lineData);
       updateCssForLine(line, lineData);
     }, 30);
-    
+
     // go away
     setTimeout(function() {
       clearInterval(aggInterval);
@@ -67,8 +67,6 @@ function handleLineData(lineData) {
 }
 
 function endgame() {
-  console.log('ending game');
-
   $('body').removeClass(activeBodyClass);
 
   $('body').addClass('over');
@@ -91,77 +89,91 @@ function sanitizeLineData(lineData) {
   if (lineData.top > $(window).height()) lineData.top = $(window).height();
 }
 
-function updateScreenForCharacter(char, delay) {
+function updateScreenForCharacter(lineData, index, delay) {
+  var preChar = lineData.line.substring(0, index);
+  var char = lineData.line.charAt(index);
+  var postChar = lineData.line.substring(index + 1);
+
   var className = numberForCharacter(char);
-  
+
   setTimeout(function() {
     if (activeBodyClass != className) $('body').removeClass(activeBodyClass);
 
     activeBodyClass = className;
     $('body').addClass(className);
+
+    lineData.div.html(preChar + '<span style="text-decoration: underline">' + char + '</span>' + postChar);
   }, delay);
 }
 
 function numberForCharacter(char) {
   var c = char.toUpperCase();
-  
+
   switch (c) {
     case '0':
     case '+':
       return 'zero';
-      
+
     case '1':
       return 'one';
-      
+
     case '2':
     case 'A':
     case 'B':
     case 'C':
       return 'two';
-      
+
     case '3':
     case 'D':
     case 'E':
     case 'F':
       return 'three';
-      
+
     case '4':
     case 'G':
     case 'H':
     case 'I':
       return 'four';
-      
+
     case '5':
     case 'J':
     case 'K':
     case 'L':
       return 'five';
-      
+
     case '6':
     case 'M':
     case 'N':
     case 'O':
       return 'six';
-      
+
     case '7':
     case 'P':
     case 'Q':
     case 'R':
     case 'S':
       return 'seven';
-      
+
     case '8':
     case 'T':
     case 'U':
     case 'V':
       return 'eight';
-      
+
     case '9':
     case 'W':
     case 'X':
     case 'Y':
     case 'Z':
-    default:
       return 'nine';
+
+    case '*':
+      return 'star';
+
+    case '#':
+      return 'pound';
+
+    default:
+      return null;
   }
 }

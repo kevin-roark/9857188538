@@ -39,8 +39,10 @@ if (args.length < 1) {
   return;
 }
 
-execFile('./clean.sh');
 
 var prefix = args[0];
-processPoem(prefix);
+
+execFile('./clean.sh', function() {
+  processPoem(prefix);
+});
 

@@ -1,13 +1,12 @@
 
 var MIN_FONT = 12;
-var MAX_FONT = 72;
+var MAX_FONT = 92;
 var MAX_AGG = 5;
 var MIN_AGG = 0;
-var FONT_AGG_MULT = 2;
+var FONT_AGG_MULT = 1.1;
 
 var audio = document.querySelector('#audio');
 audio.addEventListener('canplaythrough', function() {
-  audio.play();
   start();
 });
 
@@ -17,13 +16,18 @@ var numLines = window.poem.length;
 var linesFaded = 0;
 
 function start() {
+  var firstLineData = window.poem[0];
+  setTimeout(function() {
+    audio.play();
+  }, firstLineData.onset * 1000);
+
   window.poem.forEach(function(lineData) {
     handleLineData(lineData);
   });
 };
 
 function handleLineData(lineData) {
-  lineData.fontSize = ((MAX_FONT - MIN_FONT) * lineData.amplitude);
+  lineData.fontSize = ((MAX_FONT - MIN_FONT) * lineData.amplitude) + MIN_FONT;
   lineData.aggressiveness = (lineData.amplitude > 0.5)? (MAX_AGG - MIN_AGG) * 2 * (lineData.amplitude - 0.5) : 0;
   lineData.left = ($(window).width() * 0.64 * Math.random());
   lineData.top = ($(window).height() * 0.88 * Math.random());
@@ -39,14 +43,15 @@ function handleLineData(lineData) {
     line.fadeIn(200);
 
     // flashin
-    var timePerCharacter = (lineData.duration * 1000) / lineData.line.length;
+    var spaceFreeLine = lineData.line.replace(' ', '');
+    var timePerCharacter = (lineData.duration * 1000) / spaceFreeLine.length;
     for (var i = 0; i < lineData.line.length; i++) {
       updateScreenForCharacter(lineData, i, timePerCharacter * i);
     }
 
     var aggInterval = setInterval(function() {
-      lineData.top += Math.floor((Math.random() - 0.5) * 2 * lineData.aggressiveness);
-      lineData.left += Math.floor((Math.random() - 0.5) * 2 * lineData.aggressiveness);
+      lineData.top += aggressivePositionDelta(lineData);
+      lineData.left += aggressivePositionDelta(lineData);
       lineData.fontSize += (Math.random() - 0.5) * FONT_AGG_MULT * lineData.aggressiveness;
 
       sanitizeLineData(lineData);
@@ -72,6 +77,10 @@ function endgame() {
   $('body').addClass('over');
 }
 
+function aggressivePositionDelta(lineData) {
+  return Math.floor((Math.random() - 0.5) * 2 * lineData.aggressiveness);
+}
+
 function updateCssForLine(line, lineData) {
   line.css('font-size', lineData.fontSize + 'px');
   line.css('top', lineData.top + 'px');
@@ -90,8 +99,10 @@ function sanitizeLineData(lineData) {
 }
 
 function updateScreenForCharacter(lineData, index, delay) {
-  var preChar = lineData.line.substring(0, index);
   var char = lineData.line.charAt(index);
+  if (char == ' ') return;
+
+  var preChar = lineData.line.substring(0, index);
   var postChar = lineData.line.substring(index + 1);
 
   var className = numberForCharacter(char);

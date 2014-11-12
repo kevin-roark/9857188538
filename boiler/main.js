@@ -5,15 +5,22 @@ var MAX_AGG = 5;
 var MIN_AGG = 0;
 var FONT_AGG_MULT = 2;
 
+var audio = document.querySelector('#audio');
+audio.addEventListener('canplaythrough', function() {
+  audio.play();
+  start();
+});
+
 var activeBodyClass = '';
 
 var numLines = window.poem.length;
 var linesFaded = 0;
 
-window.poem.forEach(function(lineData) {
-  handleLineData(lineData);
-});
-
+function start() {
+  window.poem.forEach(function(lineData) {
+    handleLineData(lineData);
+  });
+};
 
 function handleLineData(lineData) {
   lineData.fontSize = ((MAX_FONT - MIN_FONT) * lineData.amplitude);

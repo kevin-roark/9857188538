@@ -1,0 +1,14 @@
+{
+  "name": "dark-t-m-f",
+  "version": "0.0.0",
+  "description": "dark-t-m-f ==========",
+  "main": "index.js",
+  "dependencies": {
+    "ncp": "1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevin-roark/dark-t-m-f.git"
+  },
+  "author": "kevin roark jr",
+}

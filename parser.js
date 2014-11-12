@@ -1,30 +1,43 @@
 var fs = require('fs');
 
-if (process.argv.length < 1) {
-  console.log('need something 2 parse');
-  return;
+module.exports = exports = parsePoem;
+
+var args = process.argv.slice(2);
+
+if (!module.parent) {
+  if (args < 1) {
+    console.log('need something 2 parse');
+    return;
+  }
+
+  var file =argvs[0];
+  var outfile = (args.length >= 2)? args[1] : 'poem.js';
+  parsePoem(file, outfile);
 }
 
-var file = process.argv[0];
-var lines = fs.readFileSync(file).toString().split('\n');
+function parsePoem(file, outfile) {
+  console.log('parsing poem: ' + file);
 
-var parsed = [];
+  var lines = fs.readFileSync(file).toString().split('\n');
 
-lines.forEach(function(line) {
-  var segments = line.split(' ||| ');
-  if (segments.length != 4) return;
+  var parsed = [];
+  lines.forEach(function(line) {
+    var segments = line.split(' ||| ');
+    if (segments.length != 4) return;
+
+    var data = {
+      line: segments[0],
+      onset: parseFloat(segments[1]),
+      duration: parseFloat(segments[2]),
+      amplitude: parseFloat(segments[3])
+    };
   
-  var data = {
-    line: segments[0],
-    onset: parseFloat(segments[1]),
-    duration: parseFloat(segments[2]),
-    amplitude: parseFloat(segments[3])
-  };
-  
-  parsed.push(data);
-});
+    parsed.push(data);
+  });
 
-var dataToWrite = 'window.poem = ' + JSON.stringify(parsed);
+  var dataToWrite = 'window.poem = ' + JSON.stringify(parsed);
 
-var outfile = (process.argv.length >= 2)? process.argv[1] : 'poem.js';
-fs.writeFileSync(outfile, dataToWrite);
+  fs.writeFileSync(outfile, dataToWrite);
+}
+
+

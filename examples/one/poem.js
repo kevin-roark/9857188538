@@ -1,0 +1,1 @@
+window.poem = [{"line":"how can i not make a movie","onset":0,"duration":7,"amplitude":1},{"line":"how can you not be the one who was king","onset":4,"duration":9,"amplitude":0.8},{"line":"man as dog","onset":10,"duration":10,"amplitude":0.4},{"line":"strong dog","onset":11,"duration":6.6,"amplitude":0.75}]

@@ -7,9 +7,13 @@ var FONT_AGG_MULT = 2;
 
 var activeBodyClass = '';
 
+var numLines = window.poem.length;
+var linesFaded = 0;
+
 window.poem.forEach(function(lineData) {
   handleLineData(lineData);
 });
+
 
 function handleLineData(lineData) {
   lineData.fontSize = ((MAX_FONT - MIN_FONT) * lineData.amplitude);
@@ -48,8 +52,19 @@ function handleLineData(lineData) {
     setTimeout(function() {
       clearInterval(aggInterval);
       line.fadeOut(200);
+
+      linesFaded += 1;
+      if (linesFaded == numLines) {
+        setTimeout(endgame, 200);
+      }
     }, lineData.duration * 1000);
   }, lineData.onset * 1000);
+}
+
+function endgame() {
+  $('body').removeClass(activeBodyClass);
+
+  $('body').addClass('over');
 }
 
 function updateCssForLine(line, lineData) {

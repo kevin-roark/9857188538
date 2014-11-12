@@ -12,6 +12,10 @@
   position: absolute;
 }
 
+.over {
+  background-color: black;
+}
+
 /* numbers */
 
 .zero {

@@ -2,6 +2,8 @@
 
 var fs = require('fs');
 var ncp = require('ncp').ncp;
+var execFile = require('child_process').execFile;
+
 var parser = require('./parser');
 
 var args = process.argv.slice(2);
@@ -30,6 +32,8 @@ if (args.length < 1) {
   console.log('need text file as first arg');
   return;
 }
+
+execFile('./clean.sh');
 
 var file = args[0];
 processPoem(file);

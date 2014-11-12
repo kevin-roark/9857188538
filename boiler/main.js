@@ -2,6 +2,8 @@
 var MIN_FONT = 12;
 var MAX_FONT = 72;
 
+var activeBodyClass = '';
+
 window.poem.forEach(function(lineData) {
   handleLineData(lineData);
 });
@@ -16,6 +18,7 @@ function handleLineData(lineData) {
   line.css('top', lineData.top);
   line.css('left', lineData.left);
   line.css('display', 'none');
+  $('body').append(line);
   
   // come inside
   setTimeout(function() {
@@ -39,6 +42,9 @@ function updateScreenForCharacter(char, delay) {
   var className = numberForCharacter(char);
   
   setTimeout(function() {
+    if (activeBodyClass != className) $('body').removeClass(activeBodyClass);
+
+    activeBodyClass = className;
     $('body').addClass(className);
   }, delay);
 }
@@ -49,6 +55,7 @@ function numberForCharacter(char) {
   switch (c) {
     case '0':
     case '+':
+    case ' ':
       return 'zero';
       
     case '1':
@@ -102,6 +109,7 @@ function numberForCharacter(char) {
     case 'X':
     case 'Y':
     case 'Z':
+    default:
       return 'nine';
   }
 }

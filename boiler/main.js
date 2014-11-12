@@ -21,8 +21,6 @@ function handleLineData(lineData) {
   lineData.left = ($(window).width() * 0.64 * Math.random());
   lineData.top = ($(window).height() * 0.88 * Math.random());
 
-  console.log(lineData);
-  
   var line = $('<div class="poem">' + lineData.line + '</div>');
   updateCssForLine(line, lineData);
   line.css('display', 'none');
@@ -62,6 +60,8 @@ function handleLineData(lineData) {
 }
 
 function endgame() {
+  console.log('ending game');
+
   $('body').removeClass(activeBodyClass);
 
   $('body').addClass('over');
@@ -101,7 +101,6 @@ function numberForCharacter(char) {
   switch (c) {
     case '0':
     case '+':
-    case ' ':
       return 'zero';
       
     case '1':

@@ -4,13 +4,17 @@ var MAX_FONT = 92;
 var MAX_AGG = 5;
 var MIN_AGG = 0;
 var FONT_AGG_MULT = 1.1;
+var DEFAULT_INTERVAL = 800;
 
 var audio = document.querySelector('#audio');
 audio.addEventListener('canplaythrough', function() {
   start();
 });
 
+var activeLines = {};
+var activeLineCount = 0;
 var activeBodyClass = '';
+var justSetBodyColor = false;
 
 var numLines = window.poem.length;
 var linesFaded = 0;
@@ -24,7 +28,35 @@ function start() {
   window.poem.forEach(function(lineData) {
     handleLineData(lineData);
   });
+
+  checkActiveLines();
 };
+
+function checkActiveLines() {
+
+  function check() {
+    var interval = DEFAULT_INTERVAL / Math.min(activeLineCount, 1);
+
+    if (justSetBodyColor) {
+      justSetBodyColor = false;
+      interval = 500;
+    }
+    else if (activeLineCount > 1) {
+      var lines = [];
+      for (var line in activeLines) {
+          if (!activeLines.hasOwnProperty(line)) continue;
+          lines.push(activeLines[line]);
+      }
+
+      var randomLine = lines[Math.floor(Math.random() * lines.length)];
+      if (randomLine) updateBodyCss(randomLine);
+    }
+
+    setTimeout(check, interval);
+  }
+
+  check();
+}
 
 function handleLineData(lineData) {
   lineData.fontSize = ((MAX_FONT - MIN_FONT) * lineData.amplitude) + MIN_FONT;
@@ -40,11 +72,15 @@ function handleLineData(lineData) {
 
   // come inside
   setTimeout(function() {
+    activeLines[lineData.line] = lineData;
+    activeLineCount += 1;
     line.fadeIn(200);
 
     // flashin
     var spaceFreeLine = lineData.line.replace(' ', '');
     var timePerCharacter = (lineData.duration * 1000) / spaceFreeLine.length;
+    lineData.timePerCharacter = timePerCharacter;
+
     for (var i = 0; i < lineData.line.length; i++) {
       updateScreenForCharacter(lineData, i, timePerCharacter * i);
     }
@@ -60,6 +96,8 @@ function handleLineData(lineData) {
 
     // go away
     setTimeout(function() {
+      activeLines[lineData.line] = null;
+      activeLineCount -= 1;
       clearInterval(aggInterval);
       line.fadeOut(200);
 
@@ -105,16 +143,22 @@ function updateScreenForCharacter(lineData, index, delay) {
   var preChar = lineData.line.substring(0, index);
   var postChar = lineData.line.substring(index + 1);
 
-  var className = numberForCharacter(char);
-
   setTimeout(function() {
-    if (activeBodyClass != className) $('body').removeClass(activeBodyClass);
-
-    activeBodyClass = className;
-    $('body').addClass(className);
+    justSetBodyColor = true;
+    lineData.activeIndex = index;
+    updateBodyCss(lineData);
 
     lineData.div.html(preChar + '<span style="text-decoration: underline">' + char + '</span>' + postChar);
   }, delay);
+}
+
+function updateBodyCss(lineData) {
+  var char = lineData.line.charAt(lineData.activeIndex);
+  var className = numberForCharacter(char);
+
+  if (activeBodyClass != className) $('body').removeClass(activeBodyClass);
+  activeBodyClass = className;
+  $('body').addClass(className);
 }
 
 function numberForCharacter(char) {

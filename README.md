@@ -5,8 +5,11 @@ dark-t-m-f
 
 ## input format:
 
-`line one of words, onset, duration, ampltude`
+[RATIO - <WHITESPACE TO SOUND RATIO>]
+[DISTORT - <LEVEL OF DISTORTION TO APPLY>]
 
- `line two of words, onset, duration, amplutude`
- 
- `...`
+`<line one of words -> don't be an idiot>, <onset -> seconds>, <duration -> seconds>, <ampltude -> 0.0 - 1.0>`
+
+`<line two of words -> don't be an idiot>, <onset -> seconds>, <duration -> seconds>, <ampltude -> 0.0 - 1.0>`
+
+`...`

@@ -4,6 +4,7 @@ module.exports = exports = soundParse;
 var exec = require('child_process').exec;
 
 function soundParse(poem, name, verbose) {
+  verbose = true;
   console.log('creatin sound: ' + name);
 
   if (!poem.whitespaceRatio) poem.whitespaceRatio = 0.44;

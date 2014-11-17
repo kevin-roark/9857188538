@@ -86,7 +86,7 @@ function handleLineData(lineData) {
 
     var timeDeltaBetweenCharacters = lineData.duration / numCharacters;
 
-    var durationRatio = numSilences == 0? 1.0 : (numCharacters / Math.max(numSilences, 1)) * poem.whitespaceRatio;
+    var durationRatio = numSilences == 0? 1.0 : (numCharacters / Math.max(numSilences, 1)) * window.poem.whitespaceRatio;
     var durationWithoutWhitespace = lineData.duration * durationRatio;
     var timePerCharacter = durationWithoutWhitespace / numCharacters;
     lineData.timePerCharacter = timePerCharacter;

@@ -25,7 +25,7 @@ function start() {
     audio.play();
   }, firstLineData.onset * 1000);
 
-  window.poem.forEach(function(lineData) {
+  window.poem.lines.forEach(function(lineData) {
     handleLineData(lineData);
   });
 

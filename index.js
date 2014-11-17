@@ -16,31 +16,22 @@ function processPoem(prefix) {
 
   var dirname = './poem';
   var poem = prefix + '.txt';
-  var song = prefix + '.mp3';
 
   fs.mkdirSync(dirname);
 
   var parsed = parser(poem, dirname + '/poem.js');
   sounder(parsed, dirname + '/poem.mp3');
 
-  // ncp(song, dirname + '/poem.mp3', function(err) {
-  //   if (err) console.log('ERROR WRITING MP3: ' + err);
-  // });
-
   ncp(__dirname + '/boiler', dirname, function(err) {
     if (err) {
       return console.error(err);
     }
-
-    console.log('HANDLED THE BOILER DATA');
   });
 }
 
 if (args.length < 1) {
-  console.log('need file thing as first arg');
-  return;
+  return console.log('need file prefix as first arg');
 }
-
 
 var prefix = args[0];
 

@@ -3,13 +3,15 @@ module.exports = exports = soundParse;
 
 var exec = require('child_process').exec;
 
-function soundParse(poem, name) {
+function soundParse(poem, name, verbose) {
+  console.log('creatin sound: ' + name);
+
   if (!poem.whitespaceRatio) poem.whitespaceRatio = 0.44;
   if (!poem.distortion) poem.distortion = 0.15;
 
   var command = commandStart();
 
-  console.log(poem);
+  if (verbose) console.log(poem);
 
   // parse each line
   for (var i = 0; i < poem.lines.length; i++) {
@@ -49,12 +51,12 @@ function soundParse(poem, name) {
       if (error !== null) {
         console.log('sound creation error: ' + error);
       }
-      else {
+      else if (verbose) {
         console.log('CREATED SOUND AT ' + name);
       }
   });
 
-  console.log(command);
+  if (verbose) console.log(command);
 
   return command;
 }

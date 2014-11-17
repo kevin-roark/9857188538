@@ -6,24 +6,26 @@ var args = process.argv.slice(2);
 
 if (!module.parent) {
   if (args < 1) {
-    console.log('need something 2 parse');
-    return;
+    return console.log('need something 2 parse');
   }
 
-  var file =argvs[0];
+  var file = argvs[0];
   var outfile = (args.length >= 2)? args[1] : 'poem.js';
   parsePoem(file, outfile);
 }
 
 function parsePoem(file, outfile) {
-  console.log('parsing poem: ' + file);
+  console.log('parsin poem: ' + file);
 
   var lines = fs.readFileSync(file).toString().split('\n');
 
   var parsed = {lines: [], distortion: 0.15, whitespaceRatio: 0.44};
   lines.forEach(function(line) {
     var segments = line.split(', ');
-    if (segments.length != 4) return;
+    if (segments.length < 1) segments.push('');
+    if (segments.length < 2) segments.push(0.0);
+    if (segments.length < 3) segments.push(10.0);
+    if (segments.length < 4) segments.push(1.0);
 
     var data = {
       line: segments[0],

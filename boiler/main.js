@@ -16,11 +16,12 @@ var activeLineCount = 0;
 var activeBodyClass = '';
 var justSetBodyColor = false;
 
-var numLines = window.poem.length;
+var numLines = window.poem.lines.length;
 var linesFaded = 0;
 
 function start() {
-  var firstLineData = window.poem[0];
+  console.log(window.poem);
+  var firstLineData = window.poem.lines[0];
   setTimeout(function() {
     audio.play();
   }, firstLineData.onset * 1000);
@@ -76,13 +77,29 @@ function handleLineData(lineData) {
     activeLineCount += 1;
     line.fadeIn(200);
 
+
     // flashin
     var spaceFreeLine = lineData.line.replace(' ', '');
-    var timePerCharacter = (lineData.duration * 1000) / spaceFreeLine.length;
+    var characters = spaceFreeLine.split('');
+    var numCharacters = characters.length;
+    var numSilences = numCharacters - 1;
+
+    var timeDeltaBetweenCharacters = lineData.duration / numCharacters;
+
+    var durationRatio = numSilences == 0? 1.0 : (numCharacters / Math.max(numSilences, 1)) * poem.whitespaceRatio;
+    var durationWithoutWhitespace = lineData.duration * durationRatio;
+    var timePerCharacter = durationWithoutWhitespace / numCharacters;
     lineData.timePerCharacter = timePerCharacter;
 
+    var spaceFreeLine = lineData.line.replace(' ', '');
+    var timePerCharacter = (lineData.duration * 1000) / spaceFreeLine.length;
+
+    var trueCharCount = 0;
     for (var i = 0; i < lineData.line.length; i++) {
-      updateScreenForCharacter(lineData, i, timePerCharacter * i);
+      if (lineData.line.charAt(i) == ' ') continue;
+
+      updateScreenForCharacter(lineData, i, (timeDeltaBetweenCharacters * trueCharCount) * 1000);
+      trueCharCount += 1;
     }
 
     var aggInterval = setInterval(function() {
@@ -137,6 +154,8 @@ function sanitizeLineData(lineData) {
 }
 
 function updateScreenForCharacter(lineData, index, delay) {
+  console.log(index + ' ' + delay);
+
   var char = lineData.line.charAt(index);
   if (char == ' ') return;
 

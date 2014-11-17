@@ -5,8 +5,8 @@ dark-t-m-f
 
 ## input format:
 
-`line one of words ||| onset ||| duration ||| ampltude`
+`line one of words, onset, duration, ampltude`
 
- `line two of words ||| onset ||| duration ||| amplutude`
+ `line two of words, onset, duration, amplutude`
  
  `...`

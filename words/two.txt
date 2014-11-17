@@ -1,10 +1,10 @@
-*eat what you make* ||| 3.0 ||| 30.0 ||| 1.0
-its ok ||| 11.0 ||| 4.4 ||| 0.4
-not so #bad ||| 14.0 ||| 4.0 ||| 0.25
-at least you made it ||| 22.0 ||| 10.0 ||| 0.54
-you can ||| 35.0 ||| 4.0 ||| 0.7
-also ||| 35.5 ||| 4.0 ||| 0.7
-*e*a*t* ||| 35.8 ||| 4.0 ||| 1.0
-what ||| 36.0 ||| 4.0 ||| 0.7
-you did not make ||| 36.4 ||| 4.0 ||| 0.8
-because you like it ||| 39.0 ||| 5.0 ||| 0.1
+*eat what you make*, 3.0, 30.0, 1.0
+its ok, 11.0, 4.4, 0.4
+not so #bad, 14.0, 4.0, 0.25
+at least you made it, 22.0, 10.0, 0.54
+you can, 35.0, 4.0, 0.7
+also, 35.5, 4.0, 0.7
+*e*a*t*, 35.8, 4.0, 1.0
+what, 36.0, 4.0, 0.7
+you did not make, 36.4, 4.0, 0.8
+because you like it, 39.0, 5.0, 0.1

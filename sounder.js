@@ -5,8 +5,11 @@ var exec = require('child_process').exec;
 
 function soundParse(poem, name) {
   if (!poem.whitespaceRatio) poem.whitespaceRatio = 0.44;
+  if (!poem.distortion) poem.distortion = 0.15;
 
   var command = commandStart();
+
+  console.log(poem);
 
   // parse each line
   for (var i = 0; i < poem.lines.length; i++) {
@@ -30,7 +33,7 @@ function soundParse(poem, name) {
     for (var j = 0; j < numCharacters; j++) {
       var char = characters[j];
 
-      var sox = soxCommandForCharacter(char, timePerCharacter, onset, lineData.amplitude);
+      var sox = soxCommandForCharacter(char, timePerCharacter, onset, lineData.amplitude, poem.distortion);
 
       if (sox) command += ' ' + sox;
 
@@ -60,7 +63,7 @@ function commandStart() {
   return 'sox --combine mix ';
 }
 
-function soxCommandForCharacter(character, duration, onset, amplitude) {
+function soxCommandForCharacter(character, duration, onset, amplitude, distortion) {
   var number = numberForCharacter(character);
   var tones = tonesForNumber(number);
 
@@ -69,12 +72,16 @@ function soxCommandForCharacter(character, duration, onset, amplitude) {
   var synth = ' synth ' + duration + ' sine ' + tones[0] + ' sine ' + tones[1] + ' channels 1 ';
   var pad = ' pad ' + onset + '@0:00 ';
 
-  var maxGain = 20;
-  var minGain = -10;
+  var maxGain = 12;
+  var minGain = -5;
   var gainLevel = ((maxGain - minGain) * amplitude) + minGain;
-  var gain = ' gain -e ' + gainLevel + ' ';
+  var gain = ' vol ' + gainLevel + ' ';
 
-  return '"|sox -n -p ' + synth + ' ' + gain + ' ' + pad + '"';
+  var overdrive = ' overdrive ' + (distortion * 100) + ' 50 ';
+
+  var effects = [synth, overdrive, gain, pad].join(' ');
+
+  return '"|sox -n -p ' + effects + ' "';
 }
 
 // http://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling

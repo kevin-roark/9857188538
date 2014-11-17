@@ -1,13 +1,13 @@
-ok to feel ||| 1.0 ||| 5.0 ||| 0.2
-proud ||| 5.0 ||| 3.6 ||| 0.8
-ok to feel ||| 7.5 ||| 5.0 ||| 0.2
-ok ||| 13.0 ||| 6.0 ||| 0.51
-9857188538 ||| 20.0 ||| 10.0 ||| 1.0
-thats a lot of eights ||| 25.0 ||| 6.0 ||| 0.9
-dear ||| 28 ||| 3.0 ||| 0.4
-kevin ||| 29 ||| 3.4 ||| 0.3
-# # # ||| 32 ||| 2.0 ||| 1.0
-sorry ||| 36 ||| 5.5 ||| 0.7
-dont mean to act this way ||| 42 ||| 5.5 ||| 0.5
-meant to call you ||| 48 ||| 16.0 ||| 0.5
-meant to call you more ||| 60 ||| 4.0 ||| 1.0
+ok to feel, 1.0, 5.0, 0.2
+proud, 5.0, 3.6, 0.8
+ok to feel, 7.5, 5.0, 0.2
+ok, 13.0, 6.0, 0.51
+9857188538, 20.0, 10.0, 1.0
+thats a lot of eights, 25.0, 6.0, 0.9
+dear, 28, 3.0, 0.4
+kevin, 29, 3.4, 0.3
+# # #, 32, 2.0, 1.0
+sorry, 36, 5.5, 0.7
+dont mean to act this way, 42, 5.5, 0.5
+meant to call you, 48, 16.0, 0.5
+meant to call you more, 60, 4.0, 1.0

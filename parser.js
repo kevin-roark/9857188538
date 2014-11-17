@@ -20,9 +20,9 @@ function parsePoem(file, outfile) {
 
   var lines = fs.readFileSync(file).toString().split('\n');
 
-  var parsed = {lines: []};
+  var parsed = {lines: [], distortion: 0.15, whitespaceRatio: 0.44};
   lines.forEach(function(line) {
-    var segments = line.split(' ||| ');
+    var segments = line.split(', ');
     if (segments.length != 4) return;
 
     var data = {

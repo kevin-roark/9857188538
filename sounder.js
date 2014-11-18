@@ -26,7 +26,8 @@ function soundParse(poem, name, verbose) {
 
     var timeDeltaBetweenCharacters = lineData.duration / numCharacters;
 
-    var durationRatio = numSilences == 0? 1.0 : (numCharacters / Math.max(numSilences, 1)) * poem.whitespaceRatio;
+    var whiteRatio = (lineData.ratio)? lineData.ratio : poem.whitespaceRatio;
+    var durationRatio = numSilences == 0? 1.0 : (numCharacters / Math.max(numSilences, 1)) * whiteRatio;
     var durationWithoutWhitespace = lineData.duration * durationRatio;
     var timePerCharacter = durationWithoutWhitespace / numCharacters;
 

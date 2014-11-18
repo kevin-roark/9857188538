@@ -33,8 +33,19 @@ function parsePoem(file, outfile) {
     else {
       var segments = line.split(', ');
       if (segments.length < 1) return;
-      if (segments.length < 2) segments.push(0.0);
+      
+      if (segments.length < 2) {
+        segments.push(0.0);
+      }
+      else {
+        if (segments[1].charAt(0) == '+') {
+          var lastLine = parsed.lines[parsed.lines.length - 1];
+          segments[1] = parseFloat(segments[1].substring(1) + lastLine.onset);
+        }
+      }
+
       if (segments.length < 3) segments.push(10.0);
+
       if (segments.length < 4) segments.push(1.0);
 
       var data = {
@@ -43,6 +54,10 @@ function parsePoem(file, outfile) {
         duration: parseFloat(segments[2]),
         amplitude: parseFloat(segments[3])
       };
+
+      if (segments.length > 4) {
+        data.ratio = parseFloat(segments[4]);
+      }
 
       parsed.lines.push(data);
     }

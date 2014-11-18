@@ -4,11 +4,12 @@
   "description": "dark-t-m-f ==========",
   "main": "index.js",
   "dependencies": {
-    "ncp": "1.0.1"
+    "ncp": "1.0.1",
+    "exec-sync": "~0.1.6"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/kevin-roark/dark-t-m-f.git"
   },
-  "author": "kevin roark jr",
+  "author": "kevin roark jr"
 }

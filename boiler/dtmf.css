@@ -8,6 +8,7 @@
 .poem {
   color: black;
   font-family: Courier New, monospace;
+  word-wrap: break-word;
 
   position: absolute;
 }

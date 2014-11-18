@@ -20,11 +20,8 @@ var numLines = window.poem.lines.length;
 var linesFaded = 0;
 
 function start() {
-  console.log(window.poem);
   var firstLineData = window.poem.lines[0];
-  setTimeout(function() {
-    audio.play();
-  }, firstLineData.onset * 1000);
+  audio.play();
 
   window.poem.lines.forEach(function(lineData) {
     handleLineData(lineData);
@@ -79,7 +76,7 @@ function handleLineData(lineData) {
 
 
     // flashin
-    var spaceFreeLine = lineData.line.replace(' ', '');
+    var spaceFreeLine = lineData.line.replace(/ /g,'');
     var characters = spaceFreeLine.split('');
     var numCharacters = characters.length;
     var numSilences = numCharacters - 1;
@@ -87,13 +84,9 @@ function handleLineData(lineData) {
     var timeDeltaBetweenCharacters = lineData.duration / numCharacters;
 
     var whiteRatio = (lineData.ratio)? lineData.ratio : window.poem.whitespaceRatio;
-    var durationRatio = numSilences == 0? 1.0 : (numCharacters / Math.max(numSilences, 1)) * whiteRatio;
-    var durationWithoutWhitespace = lineData.duration * durationRatio;
-    var timePerCharacter = durationWithoutWhitespace / numCharacters;
+    var durationRatio = numSilences == 0? 1.0 : (numCharacters / numSilences) * whiteRatio;
+    var timePerCharacter = timeDeltaBetweenCharacters * durationRatio;
     lineData.timePerCharacter = timePerCharacter;
-
-    var spaceFreeLine = lineData.line.replace(' ', '');
-    var timePerCharacter = (lineData.duration * 1000) / spaceFreeLine.length;
 
     var trueCharCount = 0;
     for (var i = 0; i < lineData.line.length; i++) {
@@ -155,8 +148,6 @@ function sanitizeLineData(lineData) {
 }
 
 function updateScreenForCharacter(lineData, index, delay) {
-  console.log(index + ' ' + delay);
-
   var char = lineData.line.charAt(index);
   if (char == ' ') return;
 

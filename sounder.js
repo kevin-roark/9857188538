@@ -2,34 +2,32 @@
 module.exports = exports = soundParse;
 
 var exec = require('child_process').exec;
+var execSync = require('exec-sync');
+
+var FILE_PREFIX = 'temp-sound-';
 
 function soundParse(poem, name, verbose) {
-  verbose = true;
   console.log('creatin sound: ' + name);
 
   if (!poem.whitespaceRatio) poem.whitespaceRatio = 0.44;
   if (!poem.distortion) poem.distortion = 0.15;
 
-  var command = commandStart();
-
-  if (verbose) console.log(poem);
+  var soxPipes =[];
 
   // parse each line
   for (var i = 0; i < poem.lines.length; i++) {
     var lineData = poem.lines[i];
 
-    var spaceFreeLine = lineData.line.replace(' ', '');
+    var spaceFreeLine = lineData.line.replace(/ /g,'');
 
     var characters = spaceFreeLine.split('');
     var numCharacters = characters.length;
     var numSilences = numCharacters - 1;
 
     var timeDeltaBetweenCharacters = lineData.duration / numCharacters;
-
     var whiteRatio = (lineData.ratio)? lineData.ratio : poem.whitespaceRatio;
-    var durationRatio = numSilences == 0? 1.0 : (numCharacters / Math.max(numSilences, 1)) * whiteRatio;
-    var durationWithoutWhitespace = lineData.duration * durationRatio;
-    var timePerCharacter = durationWithoutWhitespace / numCharacters;
+    var durationRatio = numSilences == 0? 1.0 : (numCharacters / numSilences) * whiteRatio;
+    var timePerCharacter = timeDeltaBetweenCharacters * durationRatio;
 
     var onset = lineData.onset;
 
@@ -37,51 +35,105 @@ function soundParse(poem, name, verbose) {
     for (var j = 0; j < numCharacters; j++) {
       var char = characters[j];
 
-      var sox = soxCommandForCharacter(char, timePerCharacter, onset, lineData.amplitude, poem.distortion);
+      var soxPipe = soxPipeCommand(char, timePerCharacter, onset, lineData.amplitude, poem.distortion);
 
-      if (sox) command += ' ' + sox;
+      if (soxPipe) {
+        soxPipes.push(soxPipe);
+      }
 
       onset += timeDeltaBetweenCharacters;
     }
   }
 
-  // add the outfile name
-  command += ' ' + name;
+  // iterate over every pipe, writing an intermediate file at 100 pipe increments, and
+  // collecting those file names
+  var finalFiles = [' -v 1.0 '];
+  var intermediateFiles = [];
+  var currentFiles = [];
+  for (var k = 0; k < soxPipes.length; k++) {
+    var pipe = soxPipes[k];
+    currentFiles.push(pipe);
 
-  // run the command
-  exec(command, function (error, stdout, stderr) {
-      if (error !== null) {
-        console.log('sound creation error: ' + error);
+    if (k != 0 && k % 250 == 0) {
+
+      var mediaryFile = filename(intermediateFiles.length);
+      var mediaryCommand = soxWriteCommand(currentFiles, mediaryFile, false);
+      if (verbose) {
+        console.log('writing mediary file for k ' + k);
       }
-      else if (verbose) {
-        console.log('CREATED SOUND AT ' + name);
-      }
+
+      execSync(mediaryCommand, true);
+      intermediateFiles.push(mediaryFile);
+
+      currentFiles = [];
+    }
+  }
+
+  // add intermediate files to final files list
+  intermediateFiles.forEach(function(file) {
+    finalFiles.push(file);
   });
 
-  if (verbose) console.log(command);
+  // add any pipes that weren't swallowed in a mediary command to final file list
+  currentFiles.forEach(function(pipe) {
+    finalFiles.push(pipe);
+  });
+
+  // run the final command to comebine everything
+  var finalCommand = soxWriteCommand(finalFiles, name, false, 'mix-power');
+  if (verbose) console.log(finalCommand);
+  execSync(finalCommand, true);
+  console.log('finished writing sound file to!!!!  ' + name);
+
+  // clean up the intermediate files
+  intermediateFiles.forEach(function(file) {
+    execSync('rm -f ' + file, true);
+  });
+
+  return finalCommand;
+}
+
+function soxWriteCommand(inputFiles, outfile, pipesOnly, specialMethod) {
+  var command = commandStart(pipesOnly, specialMethod);
+
+  inputFiles.forEach(function(file) {
+    command += ' ' + file;
+  });
+
+  var file = pipesOnly? '-p "' : outfile;
+
+  return command + ' ' + file + ' norm ';
+}
+
+function filename(i) {
+  return FILE_PREFIX + i + '.mp3';
+}
+
+function commandStart(pipesOnly, specialMethod) {
+  var method = specialMethod? specialMethod : 'mix';
+
+  var command = pipesOnly? '"|sox ' : 'sox';
+
+  command += ' --combine ' + method + ' ';
 
   return command;
 }
 
-function commandStart() {
-  return 'sox --combine mix ';
-}
-
-function soxCommandForCharacter(character, duration, onset, amplitude, distortion) {
+function soxPipeCommand(character, duration, onset, amplitude, distortion) {
   var number = numberForCharacter(character);
   var tones = tonesForNumber(number);
 
   if (!tones) return null;
 
-  var synth = ' synth ' + duration + ' sine ' + tones[0] + ' sine ' + tones[1] + ' channels 1 ';
-  var pad = ' pad ' + onset + '@0:00 ';
+  var synth = ' synth ' + duration.toFixed(2) + ' sine ' + tones[0] + ' sine ' + tones[1] + ' channels 1 ';
+  var pad = ' pad ' + onset.toFixed(2) + '@0:00 ';
 
-  var maxGain = 12;
-  var minGain = -5;
+  var maxGain = 16;
+  var minGain = -2;
   var gainLevel = ((maxGain - minGain) * amplitude) + minGain;
-  var gain = ' vol ' + gainLevel + ' ';
+  var gain = ' vol ' + gainLevel.toFixed(2) + ' ';
 
-  var overdrive = ' overdrive ' + (distortion * 100) + ' 50 ';
+  var overdrive = ' overdrive ' + (distortion * 100).toFixed(2) + ' 50 ';
 
   var effects = [synth, overdrive, gain, pad].join(' ');
 

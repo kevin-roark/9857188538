@@ -1,0 +1,21 @@
+RATIO - 0.55
+DISTORT - 0
+
+I saw the ocean in New York City, 1.0, 5.75, 0.5
+but I couldnt say what it, *0.4, 5.0, 0.5
+0123456789, *0.2, 3.6, 1.0
+
+this is what the ocean feels like in san francisco, *2.0, 7.7, 0.78
+and istanbul, +5, 2.7, 0.78
+and the hamptons, +1.5, 1.2, 0.78
+6, *0.2, 2.0, 0.78
+
+this is what the ocean feels like in mississippi, *4.0, 7.7, 0.12
+and florida, +5, 2.7, 0.12
+and alabama, +1.5, 1.2, 0.12
+1, *0.2, 10.0, 0.19
+swamp feelings in mississippi, +6.0, 3.0, 0.3
+show you how to be a man, *0.3, 2.0, 0.3
+
+9876543210, *4, 3.6, 1.0
+felt like, *1, 5.0, 0.5

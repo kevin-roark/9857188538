@@ -38,10 +38,14 @@ function parsePoem(file, outfile) {
         segments.push(0.0);
       }
       else {
+        var lastLine = parsed.lines[parsed.lines.length - 1];
         if (segments[1].charAt(0) == '+') {
-          var lastLine = parsed.lines[parsed.lines.length - 1];
           segments[1] = parseFloat(segments[1].substring(1)) + lastLine.onset;
         }
+        else if (segments[1].charAt(0) == '*') {
+          segments[1] = parseFloat(segments[1].substring(1)) + lastLine.onset + lastLine.duration;
+        }
+
       }
 
       if (segments.length < 3) segments.push(10.0);

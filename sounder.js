@@ -19,15 +19,19 @@ function soundParse(poem, name, verbose) {
     var lineData = poem.lines[i];
 
     var spaceFreeLine = lineData.line.replace(/ /g,'');
-
     var characters = spaceFreeLine.split('');
     var numCharacters = characters.length;
-    var numSilences = numCharacters - 1;
 
-    var timeDeltaBetweenCharacters = lineData.duration / numCharacters;
     var whiteRatio = (lineData.ratio)? lineData.ratio : poem.whitespaceRatio;
-    var durationRatio = numSilences == 0? 1.0 : (numCharacters / numSilences) * whiteRatio;
-    var timePerCharacter = timeDeltaBetweenCharacters * durationRatio;
+    var timeDeltaBetweenCharacters = lineData.duration / numCharacters;
+    var timePerCharacter = numCharacters == 1? lineData.duration : timeDeltaBetweenCharacters * whiteRatio;
+    var timePerWhiteSpace = timeDeltaBetweenCharacters - timePerCharacter;
+
+    // take away the last white space
+    if (numCharacters > 1) {
+      timeDeltaBetweenCharacters += (timePerWhiteSpace / numCharacters);
+      timePerCharacter = timeDeltaBetweenCharacters * whiteRatio;
+    }
 
     var onset = lineData.onset;
 

@@ -20,11 +20,11 @@
 /* numbers */
 
 .zero {
-  background-color: rgb(60, 0, 0);
+  background-color: rgb(240, 250, 210);
 }
 
 .one {
-  background-color: rgb(120, 0, 0);
+  background-color: rgb(110, 0, 0);
 }
 
 .two {
@@ -36,19 +36,19 @@
 }
 
 .four {
-  background-color: rgb(180, 180, 180);
+  background-color: rgb(100, 100, 100);
 }
 
 .five {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(180, 180, 180);
 }
 
 .six {
-  background-color: pink;
+  background-color: rgb(255, 255, 255);
 }
 
 .seven {
-  background-color: rgb(100, 100, 100);
+  background-color: pink;
 }
 
 .eight {

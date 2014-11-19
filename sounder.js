@@ -7,7 +7,7 @@ var execSync = require('exec-sync');
 var FILE_PREFIX = 'temp-sound-';
 
 function soundParse(poem, name, verbose) {
-  console.log('creatin sound: ' + name);
+  console.log('creatin sound now');
 
   if (!poem.whitespaceRatio) poem.whitespaceRatio = 0.44;
   if (!poem.distortion) poem.distortion = 0.15;

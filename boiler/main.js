@@ -1,6 +1,6 @@
 
-var MIN_FONT = 12;
-var MAX_FONT = 92;
+var MIN_FONT = 6;
+var MAX_FONT = 84;
 var MAX_AGG = 5;
 var MIN_AGG = 0;
 var FONT_AGG_MULT = 1.1;
@@ -137,7 +137,7 @@ function updateCssForLine(line, lineData) {
 }
 
 function sanitizeLineData(lineData) {
-  if (lineData.fontSize < 6) lineData.fontSize = 6;
+  if (lineData.fontSize < 5) lineData.fontSize = 5;
   if (lineData.fontSize > 200) lineData.fontSize = 200;
 
   if (lineData.left < 0) lineData.left = 0;

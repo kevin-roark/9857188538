@@ -59,8 +59,8 @@ function checkActiveLines() {
 function handleLineData(lineData) {
   lineData.fontSize = ((MAX_FONT - MIN_FONT) * lineData.amplitude) + MIN_FONT;
   lineData.aggressiveness = (lineData.amplitude > 0.5)? (MAX_AGG - MIN_AGG) * 2 * (lineData.amplitude - 0.5) : 0;
-  lineData.left = ($(window).width() * 0.65 * Math.random());
-  lineData.top = ($(window).height() * 0.8 * Math.random());
+  lineData.left = (window.innerWidth - lineDataWidth(lineData)) * Math.random();
+  lineData.top = (window.innerHeight * 0.8 * Math.random());
 
   var line = $('<div class="poem">' + lineData.line + '</div>');
   updateCssForLine(line, lineData);
@@ -147,10 +147,10 @@ function sanitizeLineData(lineData) {
   if (lineData.fontSize > 200) lineData.fontSize = 200;
 
   if (lineData.left < 0) lineData.left = 0;
-  if (lineData.left > $(window).width()) lineData.left = $(window).width();
+  if (lineData.left > window.innerWidth) lineData.left = window.innerWidth;
 
   if (lineData.top < 0) lineData.top = 0;
-  if (lineData.top > $(window).height()) lineData.top = $(window).height();
+  if (lineData.top > window.innerHeight) lineData.top = window.innerHeight;
 }
 
 function updateScreenForCharacter(lineData, index, delay) {
@@ -249,3 +249,24 @@ function numberForCharacter(char) {
       return null;
   }
 }
+
+function lineDataWidth(lineData) {
+  return getTextWidth(lineData.line, lineData.fontSize + 'pt "Courier New"') * 0.8;
+}
+
+/**
+ * Uses canvas.measureText to compute and return the width of the given text of given font in pixels.
+ *
+ * @param {String} text The text to be rendered.
+ * @param {String} font The css font descriptor that text is to be rendered with (e.g. "bold 14px verdana").
+ *
+ * @see http://stackoverflow.com/questions/118241/calculate-text-width-with-javascript/21015393#21015393
+ */
+function getTextWidth(text, font) {
+    // re-use canvas object for better performance
+    var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+    var context = canvas.getContext("2d");
+    context.font = font;
+    var metrics = context.measureText(text);
+    return metrics.width;
+};

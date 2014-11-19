@@ -10,7 +10,7 @@
   font-family: Courier New, monospace;
   word-wrap: break-word;
 
-  position: absolute;
+  position: fixed;
 }
 
 .over {

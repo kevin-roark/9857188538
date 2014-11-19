@@ -59,8 +59,8 @@ function checkActiveLines() {
 function handleLineData(lineData) {
   lineData.fontSize = ((MAX_FONT - MIN_FONT) * lineData.amplitude) + MIN_FONT;
   lineData.aggressiveness = (lineData.amplitude > 0.5)? (MAX_AGG - MIN_AGG) * 2 * (lineData.amplitude - 0.5) : 0;
-  lineData.left = ($(window).width() * 0.64 * Math.random());
-  lineData.top = ($(window).height() * 0.88 * Math.random());
+  lineData.left = ($(window).width() * 0.65 * Math.random());
+  lineData.top = ($(window).height() * 0.8 * Math.random());
 
   var line = $('<div class="poem">' + lineData.line + '</div>');
   updateCssForLine(line, lineData);
@@ -74,17 +74,17 @@ function handleLineData(lineData) {
     activeLineCount += 1;
     line.fadeIn(200);
 
-
     // flashin
     var spaceFreeLine = lineData.line.replace(/ /g,'');
+
     var characters = spaceFreeLine.split('');
     var numCharacters = characters.length;
     var numSilences = numCharacters - 1;
 
-    var timeDeltaBetweenCharacters = lineData.duration / numCharacters;
-
+    var timeDeltaBetweenCharacters = (lineData.duration / numCharacters) * 1000;
     var whiteRatio = (lineData.ratio)? lineData.ratio : window.poem.whitespaceRatio;
     var durationRatio = numSilences == 0? 1.0 : (numCharacters / numSilences) * whiteRatio;
+
     var timePerCharacter = timeDeltaBetweenCharacters * durationRatio;
     lineData.timePerCharacter = timePerCharacter;
 
@@ -92,7 +92,7 @@ function handleLineData(lineData) {
     for (var i = 0; i < lineData.line.length; i++) {
       if (lineData.line.charAt(i) == ' ') continue;
 
-      updateScreenForCharacter(lineData, i, (timeDeltaBetweenCharacters * trueCharCount) * 1000);
+      updateScreenForCharacter(lineData, i, timeDeltaBetweenCharacters * trueCharCount);
       trueCharCount += 1;
     }
 

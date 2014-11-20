@@ -1,0 +1,22 @@
+ok to feel, 1.0, 5.0, 0.2
+proud, 5.0, 3.6, 0.8
+and ok to feel, 7.5, 5.0, 0.2
+fine, 13.0, 6.0, 0.51
+
+9857188538, 20.0, 10.0, 1.0
+9857188538, 20.6, 4.0, 0.2
+9857188538, 28.0, 1.6, 0.2
+it feels strange to have something for so long, 25.0, 9.0, 0.9
+
+dear, 28, 3.0, 0.4
+reader, 29, 3.4, 0.3
+# # #, 32, 2.0, 1.0
+sorry, 36, 5.5, 0.9
+I dont mean to act this way, 42, 5.5, 0.5
+meant to use this thing to talk more, 45, 7.0, 0.375
+meant to call more often, 48, 16.0, 0.5
+meant to call you and talk more, 60, 4.0, 1.0
+all the times i looked, 65.0, 4.0, 0.5, 1.0
+down with blank eyes, 66.5, 2.5, 0.5, 1.0
+as it glowed, 66.8, 2.2, 0.5, 1.0
+i should have used it, 67.0, 2.0, 0.5, 1.0

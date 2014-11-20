@@ -1,0 +1,21 @@
+RATIO - 0.5
+DISTORT - 0.82
+
+With the power, 0.2, 4.0, 0.34
+of Twitter, +3.5, 4.0, 0.38
+Bootstrap you, +3.5, 3.5, 0.36
+wuwguwish frqiodb eurobduwhevo exghaow hisjdb qivrie, +1.25, 12.0, 1.0
+whiqgqvquu hchwhwu ehebue hehe heheuuw hehsid jwhushd, +0.8, 11.5, 1.0
+help, +5.8, 4.0, 0.4
+help, +5, 3.5, 0.35
+help, +4, 3.0, 0.3
+help, +3, 2.5, 0.25
+help, +2.5, 2.3, 0.23
+help, +1.9, 2.1, 0.2
+help, +1.6, 1.8, 0.18
+help, +1.3, 1.5, 0.15
+help, +1, 1.25, 0.11
+help, +0.7, 1.0, 0.08
+help, +0.6, 0.9, 0.07
+help, +0.5, 0.8, 0.06
+help, +0.35, 0.7, 0.05

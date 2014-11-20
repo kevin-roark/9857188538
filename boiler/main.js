@@ -130,6 +130,10 @@ function endgame() {
   $('body').removeClass(activeBodyClass);
 
   $('body').addClass('over');
+
+  setTimeout(function() {
+    window.location = '/';
+  }, 1800);
 }
 
 function aggressivePositionDelta(lineData) {

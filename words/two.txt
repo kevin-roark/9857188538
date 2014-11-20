@@ -1,7 +1,6 @@
 RATIO - 0.5
 
 swallow whatever you see on the plate, 0.5, 4, 0.4
-
 even pork salad, 4.0, 12, 0.4, 0.84
 
 its, *1, 2, 0.66

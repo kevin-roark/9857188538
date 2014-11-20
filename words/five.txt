@@ -17,7 +17,7 @@ he heard for the very first time, 29.5, 5.0, 0.7
 #, +0.5, 0.6, 1.0
 #, +0.5, 1, 1.0
 
-I got a cell phone in 7th grade, 49, 6.0, 0.5
+I got one cell phone in 7th grade, 49, 6.0, 0.5
 it, 54.5, 1.5, 0.4
 was, 55.5, 1.5, 0.4
 a, 56.5, 1.5, 0.4
@@ -26,7 +26,7 @@ branded, 58, 2.5, 1.0
 flip, 59.5, 1.5, 0.2
 it quickly became a chocolate by LG i turned off the old one, 61, 7.0, 0.6
 my friend LG, 62, 6.0, 1.0
-my friend Nigel loved Verizon phones, 65, 5.0, 0.6
+my friend Nigel loved Verizon, 65, 5.0, 0.6
 so I did too, 66, 3.0, 0.1
 sad Ethan bought an iPhone, 68, 7, 0.45
 we took pictures, 70, 5, 0.46
@@ -37,7 +37,7 @@ I never did sex ed, 77, 3.5, 0.75
 moved on and had a different one it broke when i started college, 81, 6.0, 0.6
 I purchased a RAZR on ebay ++, +3, 6.0, 0.3
 turned 19 and got an iPhone, +1, 4.0, 0.5
-now I can take pictures of my own asshole inside and outside of class, 87, 5.0, 0.75
+now I can take pictures of my own asshole inside and outside of class, 87, 5.40, 0.75
 I never took biology again, 90, 4.0, 0.5
 I use my iPhone all day, 92, 4.0, 0.8
 

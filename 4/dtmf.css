@@ -1,0 +1,68 @@
+.html, .body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.poem {
+  color: black;
+  font-family: Courier New, monospace;
+  word-wrap: break-word;
+
+  position: fixed;
+}
+
+.over {
+  background-color: black;
+}
+
+/* numbers */
+
+.zero {
+  background-color: rgb(240, 250, 210);
+}
+
+.one {
+  background-color: rgb(110, 0, 0);
+}
+
+.two {
+  background-color: rgb(180, 0, 0);
+}
+
+.three {
+  background-color: rgb(255, 0, 0);
+}
+
+.four {
+  background-color: rgb(100, 100, 100);
+}
+
+.five {
+  background-color: rgb(180, 180, 180);
+}
+
+.six {
+  background-color: rgb(255, 255, 255);
+}
+
+.seven {
+  background-color: pink;
+}
+
+.eight {
+  background-color: rgb(0, 0, 210);
+}
+
+.nine {
+  background-color: rgb(0, 0, 255);
+}
+
+.star {
+  background-color: yellow;
+}
+
+.pound {
+  background-color: orange;
+}

@@ -1,0 +1,1 @@
+window.poem = {"lines":[{"line":"Imagine human as a dog","onset":0,"duration":45,"amplitude":0.41,"ratio":1},{"line":"Big Strong Dog","onset":27,"duration":12,"amplitude":0.66,"ratio":0.9},{"line":"+    now just picture that    +","onset":48,"duration":5,"amplitude":0.61}],"distortion":0.15,"whitespaceRatio":0.44}

@@ -1,0 +1,1 @@
+window.poem = {"lines":[{"line":"get out of here","onset":0,"duration":4,"amplitude":0.25},{"line":"go away","onset":3,"duration":4,"amplitude":0.25},{"line":"please leave","onset":6,"duration":4,"amplitude":0.25},{"line":"thanks","onset":9,"duration":4,"amplitude":0.25}],"distortion":0,"whitespaceRatio":0.98}

@@ -1,0 +1,1 @@
+window.poem = {"lines":[{"line":"MAGICIANS INVENTED 5000 LANGUAGES WE HAVE TO DO SOMETHING GREATER","onset":0,"duration":10,"amplitude":1},{"line":"OR ITS LIKE WE NEVER DID ANYTHING AT ALL","onset":0,"duration":10,"amplitude":1}],"distortion":0.15,"whitespaceRatio":0.44}

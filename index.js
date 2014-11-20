@@ -11,10 +11,10 @@ var args = process.argv.slice(2);
 
 ncp.limit = 16;
 
-function processPoem(prefix) {
+function processPoem(prefix, dirname) {
   console.log('readin poem: ' + prefix);
 
-  var dirname = './poem';
+  if (!dirname) dirname = './poem';
   var poem = prefix + '.txt';
 
   fs.mkdirSync(dirname);
@@ -35,6 +35,9 @@ if (args.length < 1) {
 
 var prefix = args[0];
 
+var dirname = null;
+if (args.length > 1) dirname = args[1];
+
 execFile('./clean.sh', function() {
-  processPoem(prefix);
+  processPoem(prefix, dirname);
 });

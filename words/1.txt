@@ -1,6 +1,6 @@
 RATIO - 0.777
 
-i watched a bird fly away today, 0.5, 9, 0.42
+Watched as a bird fly away today, 0.5, 9, 0.42
 on tv, *0.676, 4, 0.45
 and i thought to myself, *1, 8, 0.48
 
@@ -39,4 +39,4 @@ and i thought to myself, *1, 8, 0.48
 6, +0.15, 3.0, 0.963
 6, +0.1, 3.0, 0.963
 
-isnt that something, *1, 4.8, 1.0, 0.2
+Isnt that something, *1, 4.8, 1.0, 0.2

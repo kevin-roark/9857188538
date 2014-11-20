@@ -133,7 +133,7 @@ function endgame() {
 
   setTimeout(function() {
     window.location = '/';
-  }, 1800);
+  }, 2500);
 }
 
 function aggressivePositionDelta(lineData) {

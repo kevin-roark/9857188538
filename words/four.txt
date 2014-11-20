@@ -11,8 +11,8 @@ feels strange to have something for so long, 25.0, 9.0, 0.9
 dear, 28, 3.0, 0.4
 kevin, 29, 3.4, 0.3
 # # #, 32, 2.0, 1.0
-iSorry, 36, 5.5, 0.9
-dont mean to act this way, 42, 5.5, 0.5
+imSorry, 36, 5.5, 0.9
+I dont mean to act this way, 42, 5.5, 0.5
 meant to use this thing to talk more, 45, 7.0, 0.375
 meant to call more often, 48, 16.0, 0.5
 meant to call you and talk more, 60, 4.0, 1.0

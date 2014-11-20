@@ -9,6 +9,7 @@ my friend ronald, +2, 5.0, 0.5
 my friend ronald lives inside the trash can inside the computer, +4.0, 10.0, 0.32
 my friend ronald lives inside the trash can inside the computer, +4.0, 10.0, 0.4
 my friend ronald lives inside the computer in the trash can, +4.0, 10.0, 0.8
+
 ronald mixes them up but, +1.0, 4.0, 0.2
 ronald lives in the computer, +3.0, 5.0, 0.9
 ronald lives in the trash, +2.0, 5.0, 0.95

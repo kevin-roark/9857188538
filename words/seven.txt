@@ -23,7 +23,7 @@ DISTORT - 1.0
 0, 19.9, 0.64, 0.8
 0, 21.5, 0.64, 0.8
 
-u and i think no one is bad all the time, 0.0, 8.0, 0.6
+U and I think no one is bad all the time, 0.0, 8.0, 0.6
 too hard to say, 7.0, 4.0, 0.15
 but most people can be bad sometimes, 10.0, 7.4, 0.49
 even, 16.0, 1.3, 0.7
@@ -54,4 +54,4 @@ try, +0.25, 1.3, 0.7
 and, +0.25, 1.3, 0.7
 maybe, +0.25, 1.3, 0.7
 thats, +0.25, 1.3, 0.7
-good, +0.25, 1.3, 0.7
+fine, +0.25, 1.3, 0.7

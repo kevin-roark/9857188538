@@ -1,4 +1,4 @@
-how can i not make a movie, 0, 7.0, 1.0
-how can you not be the one who was king, 4.0, 9.0, 0.8
-man as dog, 10.0, 10.0, 0.4
-strong dog, 11.0, 6.6, 0.75
+
+Imagine human as a dog, 0, 45, 0.41, 1.0
+Big Strong Dog, 27, 12, 0.66, 0.9
++    now just picture that    +, 48, 5, 0.61

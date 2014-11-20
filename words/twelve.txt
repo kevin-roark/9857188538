@@ -1,0 +1,7 @@
+RATIO - 0.98
+DISTORT - 0
+
+get out of here, 0, 4, 0.25
+go away, 3, 4, 0.25
+please leave, 6, 4, 0.25
+thanks, 9, 4, 0.25

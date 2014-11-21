@@ -132,7 +132,7 @@ function endgame() {
   $('body').addClass('over');
 
   setTimeout(function() {
-    window.location = '../';
+    window.location = '/';
   }, 2500);
 }
 
